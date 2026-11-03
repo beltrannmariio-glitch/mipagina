@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Corona dental</title>
+<style>
+body{font-family:Arial;text-align:center;background:#eaf7ff}
+button{padding:15px;margin:10px;background:#08a0ba;color:white;border:0;border-radius:12px;cursor:pointer}
+</style>
+</head>
+<body>
+<h1>👑 COLOCA LA CORONA DENTAL</h1>
+<p>Selecciona la corona que corresponde al tamaño solicitado.</p>
+<div style="font-size:120px">🦷</div>
+<h2 id="pregunta"></h2>
+<div id="opciones"></div>
+<h3 id="mensaje"></h3>
+<script>
+let niveles=[
+["Pequeña",["Pequeña","Mediana","Grande"]],
+["Mediana",["Grande","Mediana","Pequeña"]],
+["Grande",["Pequeña","Grande","Mediana"]],
+["Mediana",["Mediana","Pequeña","Grande"]],
+["Pequeña",["Grande","Pequeña","Mediana"]]
+];
+let n=0;
+function jugar(){
+document.getElementById("pregunta").textContent="Selecciona la corona: "+niveles[n][0];
+let d=document.getElementById("opciones");d.innerHTML="";
+niveles[n][1].forEach(v=>{
+let b=document.createElement("button");b.textContent="👑 "+v;
+b.onclick=()=>{
+if(v===niveles[n][0]){
+n++;
+if(n===5){d.innerHTML="";document.getElementById("mensaje").textContent="¡Coronas colocadas correctamente! 🎉";}
+else jugar();
+}else document.getElementById("mensaje").textContent="Prueba otro tamaño.";
+};
+d.appendChild(b);
+});
+}
+jugar();
+</script>
+</body>
+</html>
